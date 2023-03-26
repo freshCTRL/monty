@@ -1,3 +1,6 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <sys/types.h>
 /**
  * struct stack_s - doubly linked list representation of a stack (or queue)
  * @n: integer
@@ -9,12 +12,23 @@
  */
 typedef struct stack_s
 {
-        int n;
-        struct stack_s *prev;
-        struct stack_s *next;
+int n;
+struct stack_s *prev;
+struct stack_s *next;
 } stack_t;
 
+typedef struct bus_s
+{
+char *arg;
+FILE *file;
+char *content;
+int lifi;
+} bus_t;
+extern bus_t bus;
+
 void pint(stack_t **stack, unsigned int line_number);
+void push(stack_t **stack, unsigned int line_number);
+ssize_t getstdin(char **lineptr, int file);
 
 /**
  * struct instruction_s - opcode and its function
@@ -26,6 +40,6 @@ void pint(stack_t **stack, unsigned int line_number);
  */
 typedef struct instruction_s
 {
-        char *opcode;
-        void (*f)(stack_t **stack, unsigned int line_number);
+char *opcode;
+void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
